@@ -1,0 +1,19 @@
+{
+  "name": "nodejstest",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "init.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.0.2",
+    "sequelize": "^5.21.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node init.js"
+  },
+  "author": "song",
+  "license": "ISC"
+}
