@@ -18,6 +18,6 @@ if (config.use_env_variable) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Person = require('./user')(sequelize, Sequelize);
+db.User = require('./User')(sequelize, Sequelize);
 
 module.exports = db;
