@@ -5,11 +5,21 @@
 # 인증
 
 - ref : 
-    - 기본 설명 - https://swalloow.github.io/implement-jwt
-    - 기본 구현 - https://stackhoarder.com/2019/07/17/node-js-passport-js-jwt-token-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/
-    - jwt debugger - https://jwt.io        
-- passport-jwt를 사용하여 토큰인증기반 방식으로 구현
-- 
+    - jwt 기본 설명 - https://velopert.com/2350
+    - jwt 기본 구현 - https://stackhoarder.com/2019/07/17/node-js-passport-js-jwt-token-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84/
+    - jwt debugger - https://jwt.io
+    - session 방식 
+        - https://opentutorials.org/course/3400/21831
+        - https://morningbird.tistory.com/33?category=641408
+        
+- 세션 방식으로 구현
+- jwt방식으로 차후에 확장으로 할 생각
+
+# 보안
+
+- ref :
+    - 비밀번호 보안 - https://morningbird.tistory.com/32?category=641408
+- md5/sha256/pbkdf2 중, pbkdf2 사용
 
 # DB
 
@@ -18,3 +28,9 @@
     - sequelize crud 다루기 - https://hyunseob.github.io/2016/03/27/usage-of-sequelize-js/
 - 사용 DB : MariaDB
 - sequelize, sequelize-cli를 통해 구현
+
+# 테스트
+
+- postman 사용
+- postman 사용 ref : https://www.a-mean-blog.com/ko/blog/Node-JS-API/_/API-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-Postman-%EC%84%A4%EC%B9%98%EB%B0%8F-%EA%B0%84%EB%8B%A8-%EC%82%AC%EC%9A%A9%EB%B2%95
+- postman download : https://www.getpostman.com/downloads/

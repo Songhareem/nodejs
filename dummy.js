@@ -11,3 +11,5 @@ const user = [
         name: "송하민",
     },
 ]
+
+module.exports = user;
