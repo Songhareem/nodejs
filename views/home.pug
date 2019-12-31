@@ -2,4 +2,8 @@
 extends layout/main
 
 block content
-    h1 get home
+    
+    form(action="/", method="post")
+        input(type="email", name="email", placeholder="Email", required = true)
+        input(type="password", name="password", placeholder="P/W", required = true)
+        input(type="submit", value="Log In")
