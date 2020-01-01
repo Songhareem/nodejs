@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "0000",
-    "database": "for_test",
+    "database": "NodeBird",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false

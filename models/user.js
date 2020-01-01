@@ -1,32 +1,31 @@
 
-
-module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('User', {
-      user_email: {
-        type: DataTypes.STRING(20),
+module.exports = (sequelize, DataTypes) => (
+    sequelize.define('user', {
+      email: {
+        type: DataTypes.STRING(40),
+        allowNull: true,           // not null 옵션
+        unique: true,              // unique 옵션
+      },
+      nick: {
+        type: DataTypes.STRING(15),
         allowNull: false,
-        unique: true,
       },
       password: {
-        type:DataTypes.STRING(100),
-        allowNull: false,
+        type: DataTypes.STRING(100),
+        allowNull: true,
       },
-      name: {
+      provider: {
         type: DataTypes.STRING(10),
         allowNull: false,
+        defaultValue: 'local',
       },
-    },
+      snsId: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+      },
+    }, 
     {
-      // don't use camelcase for automatically added attributes but underscore style
-      // so updatedAt will be updated_at
-      underscored: true,
-  
-      // disable the modification of tablenames; By default, sequelize will automatically
-      // transform all passed model names (first parameter of define) into plural.
-      // if you don't want that, set the following
-      freezeTableName: true,
-  
-      // define the table's name
-      tableName: 'user'
-    });
-}
+        timestamp: true,    // 생성일, 수정일
+        paranoid: true,     // 삭제일(복구용), 삭제일이 NULL이 아니라면 삭제된 데이터로 판단
+    })
+  );

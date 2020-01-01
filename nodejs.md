@@ -11,7 +11,9 @@
     - session 방식 
         - https://opentutorials.org/course/3400/21831
         - https://morningbird.tistory.com/33?category=641408
-        
+        - https://www.zerocho.com/category/NodeJS/post/579b3fc4062e76a002648af6
+        - https://github.com/zerocho/nodejs-book
+
 - 세션 방식으로 구현
 - jwt방식으로 차후에 확장으로 할 생각
 
@@ -19,7 +21,9 @@
 
 - ref :
     - 비밀번호 보안 - https://morningbird.tistory.com/32?category=641408
-- md5/sha256/pbkdf2 중, pbkdf2 사용
+- md5/sha512/pbkdf2/bcrypt 중 bcrypt사용
+
+- bcrypt : 비밀번호 암호화 패키지
 
 # DB
 
@@ -28,6 +32,7 @@
     - sequelize crud 다루기 - https://hyunseob.github.io/2016/03/27/usage-of-sequelize-js/
 - 사용 DB : MariaDB
 - sequelize, sequelize-cli를 통해 구현
+- sequelize db:create
 
 # 테스트
 

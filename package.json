@@ -4,8 +4,11 @@
   "description": "none",
   "main": "init.js",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-mysql-session": "^2.1.0",
     "express-session": "^1.17.0",
@@ -13,17 +16,19 @@
     "morgan": "^1.9.1",
     "mysql2": "^2.0.2",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
+    "passport-kakao": "^1.0.0",
     "passport-local": "^1.0.0",
     "pbkdf2-password": "^1.2.1",
     "pug": "^2.0.4",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node init.js"
+    "start": "nodemon app.js"
   },
   "author": "song",
   "license": "ISC"
