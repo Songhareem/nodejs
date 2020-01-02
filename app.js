@@ -11,11 +11,11 @@ require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const sequlize = require('./models').sequelize;
+const sequelize = require('./models').sequelize;
 const passportConfig = require('./passport');
 
 const app = express();
-sequlize.sync();
+sequelize.sync();
 passportConfig(passport);
 
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +36,7 @@ app.use(session({
     secure: false,
   },
 }));
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -43,12 +44,14 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
+// catch 404 and foward to error handler 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
+//error handler
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

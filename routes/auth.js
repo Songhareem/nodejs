@@ -60,4 +60,16 @@ router.get('/logout', isLoggedIn, (req, res) => {
     res.redirect('/');
 })
 
+// kakao flow 1
+router.get('/kakao', passport.authenticate('kakao'));
+
+// kakao flow 3
+// kakaoStrategy의 callbackURL 주소
+// 비밀번호 실패시 비밀번호 찾기 등은 미구현 상태
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect:'/',
+}), (req, res) => {
+    res.redirect('/');
+});
+
 module.exports = router;
