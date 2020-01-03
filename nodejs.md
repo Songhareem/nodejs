@@ -14,8 +14,17 @@
         - https://www.zerocho.com/category/NodeJS/post/579b3fc4062e76a002648af6
         - https://github.com/zerocho/nodejs-book
 
-- 세션 방식으로 구현
+- passport를 활용
+    - express-session을 이용 local
+    - 카카오 개발자 rest API 이용 kakao
+        - https://developers.kakao.com/
+        - 1 ) 앱만들기
+        - 2 ) 일반 탭에서 rest API 키 받아서 env 파일 및 kakaoStrategy(clientID)에 적용
+        - 3 ) 플랫폼 추가 (웹 - 도메인 메인 주소)
+        - 4 ) callbackURL 정하고, 그 주소를 Redirect URL로 설정
+        - 5 ) 사용자관리에서 수집할 정보 지정
 - jwt방식으로 차후에 확장으로 할 생각
+
 
 # 보안
 
