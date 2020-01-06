@@ -48,3 +48,19 @@
 - postman 사용
 - postman 사용 ref : https://www.a-mean-blog.com/ko/blog/Node-JS-API/_/API-%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-Postman-%EC%84%A4%EC%B9%98%EB%B0%8F-%EA%B0%84%EB%8B%A8-%EC%82%AC%EC%9A%A9%EB%B2%95
 - postman download : https://www.getpostman.com/downloads/
+
+# AWS 관련
+
+- es2
+    - ref : https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/concepts.html
+
+- rds
+    - ref : https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/Welcome.html
+    - mysql -h <endpoint> -P 3306 -u <mymasteruser>  -p 명령어를 클라이언트에서 쳐서 접속
+
+- 문제/해결
+    - 문제 : [ERROR 2002] es2와 rds의 DB를 연동시키는 중, es2에 깔린 DB가 실행된건지 확인을 위해 es2의 mysql에 접근중 발생
+        - 원인 : linux내에서 mysql 서버 데몬 미실행
+        - 해결 : cli에서 service mysql start 실행
+            - ref : https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_MySQL_%EC%8B%9C%EC%9E%91,_%EC%A0%95%EC%A7%80,_%EC%9E%AC%EC%8B%9C%EC%9E%91,_%EC%83%81%ED%83%9C%ED%99%95%EC%9D%B8
+  
