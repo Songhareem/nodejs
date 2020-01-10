@@ -64,3 +64,19 @@
         - 해결 : cli에서 service mysql start 실행
             - ref : https://zetawiki.com/wiki/%EB%A6%AC%EB%88%85%EC%8A%A4_MySQL_%EC%8B%9C%EC%9E%91,_%EC%A0%95%EC%A7%80,_%EC%9E%AC%EC%8B%9C%EC%9E%91,_%EC%83%81%ED%83%9C%ED%99%95%EC%9D%B8
   
+# dotenv 관련
+
+- 문제 : process.env.key 가 undefined로 나오는 경우
+    - 원인 : .env 파일을 찾지못하면 return undefined!
+    - 해결 : require('dotenv').config({path: __dirname + '/.env'})
+
+# 상태코드
+
+- 회원가입 시, 이메일/아이디 가 중복될 때 사용할만한 응답 status code?
+    - 400 Bad Request
+        - RFC 7231 기준, 서버가 처리 못하는 부분이나 어떤 오류로 처리하지 못할 때 사용
+    - 409 Conflict
+        - 리소스의 현재 상태와 충돌해서 요청을 처리할 수 없으므로 클라이언트가 요청을 다시 클라이언트가 이 충돌을 수정해서 요청을 다시 보낼 경우
+    - 403 Forbidden
+        - RFC 7231 기준, 서버가 요청을 이해했으나 승인을 거부하는 경우, 요청에 인증 자격 증명이 제공된 상황일때 서버는 액세스 권한을 부여하기에 충분치 않은것으로 간주
+    - 409를 사용 결정
