@@ -43,6 +43,20 @@
 - sequelize, sequelize-cli를 통해 구현
 - sequelize db:create
 
+# 이미지 업로드
+
+- multer 이용 : 
+    - 이미지를 업로드 하려면, html form에 enctype = "multipart/form-data" 추가
+    - multipart/form-data를 해석하기 위해 multer필요
+    - 세팅 후, multer 옵션
+        - single : 이미지 하나(필드명)
+        - array : 이미지 여러 개 (단일 필드)
+        - fields : 이미지 여러 개(여러 필드)
+        - none: 이미지 X
+    - multerSet.option('imgId'); 으로 호출
+        - imgId = form에서 img id 값
+    - multer를 통해 프론트에서 오는 값은 req.file을 통해 옴
+
 # 테스트
 
 - postman 사용
@@ -80,3 +94,33 @@
     - 403 Forbidden
         - RFC 7231 기준, 서버가 요청을 이해했으나 승인을 거부하는 경우, 요청에 인증 자격 증명이 제공된 상황일때 서버는 액세스 권한을 부여하기에 충분치 않은것으로 간주
     - 409를 사용 결정
+
+- 자주 사용하는 status code
+    - 200 - ok
+        - request 성공
+        - ex) resource 목록/resource 상세/resource 수정/그외 대부분의 API 성공
+    - 201 - create
+        - request 성공
+        - ex) resource 생성 성공
+    - 204 - no content
+        - request 성공
+        - ex) resource 삭제 성공
+    - 301 - move permanently
+        - 페이지 이동
+    - 307 - temporary_redirect
+        - 임시 페이지 이동
+    - 400 - bad_request
+        - request 실패
+        - ex) 유효성 검사 통과 실패, 잘못된 요청
+    - 401 - unauthorized
+        - 인증 실패
+        - ex) 세션 없음, 로그인 실패
+    - 403 - forbidden
+        - 인증은 성공했으나 권한이 없음
+        - ex) 권한없는 자원에 접근하려함
+    - 404 - not_found
+        - API 없음
+        - ex) route 조회 실패
+    - 500 - internal_server_error
+        - 오류
+        - ex) 서버오류, exception
