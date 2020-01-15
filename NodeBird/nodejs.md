@@ -39,9 +39,11 @@
 - ref : 
     - sequelize 설명 및 구현 - https://jongmin92.github.io/2017/04/08/Node/sequelize/#8
     - sequelize crud 다루기 - https://hyunseob.github.io/2016/03/27/usage-of-sequelize-js/
+    - sequelize 쿼리 ref : http://jeonghwan-kim.github.io/sequalize-%EC%BF%BC%EB%A6%AC/
 - 사용 DB : MariaDB
 - sequelize, sequelize-cli를 통해 구현
 - sequelize db:create
+
 
 # 이미지 업로드
 

@@ -27,6 +27,7 @@ router.get('/', (req, res, next) => {
     
     console.log('connect here');
     Post.findAll({
+        // include : join할 대상을 배열 또는 그냥 넘겨줌
         include: {
             model: User,
             attributes: ['id', 'nick'],
