@@ -53,6 +53,7 @@
         - array : 이미지 여러 개 (단일 필드)
         - fields : 이미지 여러 개(여러 필드)
         - none: 이미지 X
+        - 사진 업로드 후, 게시글 업로드 시에는 주소를 올리므로 none 사용(post '/')
     - multerSet.option('imgId'); 으로 호출
         - imgId = form에서 img id 값
     - multer를 통해 프론트에서 오는 값은 req.file을 통해 옴

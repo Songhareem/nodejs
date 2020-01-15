@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const isLoggedIn = require('./middleware').isLoggedIn;
 const isNotLoggedIn = require('./middleware').isNotLoggedIn;
+const Post = require('../models').Post;
+const User = require('../models').User;
 
 // 프로필 페이지
 router.get('/profile', isLoggedIn, (req, res) => {
@@ -24,11 +26,22 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 router.get('/', (req, res, next) => {
     
     console.log('connect here');
-    res.render('index.pug', {
-        title: 'NodeBird',
-        twits: [],
-        user: req.user,
-        loginError: req.flash('loginError'),
+    Post.findAll({
+        include: {
+            model: User,
+            attributes: ['id', 'nick'],
+        },
+        order: [['createdAt', 'DESC']],
+    }).then((posts) => {
+        res.render('index.pug', {
+            title: 'NodeBird',
+            twits: posts,
+            user: req.user,
+            loginError: req.flash('loginError'),
+        });
+    }).catch((err) => {
+        console.error(err);
+        next(err);
     });
 });
 
