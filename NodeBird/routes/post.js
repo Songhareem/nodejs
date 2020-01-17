@@ -4,7 +4,9 @@ const multer = require('multer');
 const path = require('path');
 const Post = require('../models').Post;
 const Hashtag = require('../models').Hashtag;
+const User = require('../models').User;
 const router = express.Router();
+const isLoggedIn = require('./middleware').isLoggedIn;
 
 // upload setting
 const uploadImg = multer({
@@ -29,14 +31,14 @@ const uploadImg = multer({
     } 
 });
 
-router.post('/img', uploadImg.single('img'), (req, res) => {
+router.post('/img', isLoggedIn, uploadImg.single('img'), (req, res) => {
     console.log(req.body, req.file);
     // 프론트로 이미지가 어디로 저장됐는지 보내줌
     res.json({ url: `/img/${req.file.filename}`});
 });
 
 const uploadPost = multer();
-router.post('/', uploadPost.none(), async (req, res,next) => {
+router.post('/', isLoggedIn, uploadPost.none(), async (req, res,next) => {
     // 게시글 업로드
     try {
         const post = await Post.create({
@@ -57,6 +59,33 @@ router.post('/', uploadPost.none(), async (req, res,next) => {
             await post.addHashtags(result.map(r => r[0]));
         }
         res.redirect('/');
+    } catch(err) {
+        console.error(err);
+        next(err);
+    }
+});
+
+router.get('/hashtag', async (req, res, next) => {
+
+    const query = req.query.hashtags;
+    if(!query) {
+        return res.redirect('/');
+    }
+    // A.getB : 관계있는 로우 조회
+    // A.addB : 관계 형성
+    // A.setB : 관계 수정
+    // A.removeB : 관계 제거
+    try {
+        const hashtag = await Hashtag.findOne({ where : {title: query}});
+        let posts = [];
+        if(hashtag) {
+            post = await hashtag.getPosts({include: [{model: User}]});
+        }
+        return res.render('main', {
+            title: `${query} | NodeBird`,
+            user: req.user,
+            twits: this.posts,
+        });
     } catch(err) {
         console.error(err);
         next(err);

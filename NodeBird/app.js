@@ -10,6 +10,7 @@ const passport = require('passport');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
+const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
 const sequelize = require('./models').sequelize;
@@ -24,7 +25,10 @@ app.set('view engine', 'pug');
 app.set('port', process.env.PORT || 4000);
 
 app.use(morgan('dev'));
+// app.use('/', express.static(path.join(__dirname, 'public'))); // 바로 아래와 같음
 app.use(express.static(path.join(__dirname, 'public')));
+// express.static으로 실주소: /upload 와 접근주소: /img 를 다르게 만듦
+app.use('/img', express.static(path.join(__dirname, 'upload'))); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -43,6 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+app.use('/user',userRouter);
 app.use('/auth', authRouter);
 app.use('/post', postRouter);
 

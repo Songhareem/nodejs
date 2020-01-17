@@ -25,10 +25,23 @@ module.exports = (passport) => {
             console.log(cashingSession[id]);
             done(null, cashingSession[id]);
         } else {
-            User.findOne({where: {id} })
+            User.findOne({
+                where: {id},
+                include: [{
+                    model: User,
+                    attributes:['id','nick'],
+                    as: 'Followers',  
+                },
+                {
+                    model: User,
+                    attributes:['id','nick'],
+                    as: 'Followings',
+                }]
+             })
                 .then( (user) => {
                     cashingSession[id] = user;
-                    done(null, user);
+                    // done의 user = req.user, req.user 수정시 deserializeUser에서 해야함
+                    done(null, user);   
                 })
                 .catch( (err) =>  {
                     done(err)
