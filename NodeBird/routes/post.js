@@ -7,6 +7,14 @@ const Hashtag = require('../models').Hashtag;
 const User = require('../models').User;
 const router = express.Router();
 const isLoggedIn = require('./middleware').isLoggedIn;
+const fs = require('fs');
+
+fs.readdir('uploads', (error) => {
+    if (error) {
+      console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다.');
+      fs.mkdirSync('uploads');
+    }
+  });
 
 // upload setting
 const uploadImg = multer({
@@ -18,16 +26,16 @@ const uploadImg = multer({
             cb(null,'uploads/');
         },
         // file 명 지정
-        filename(req,file,db) {
+        filename(req,file,cb) {
             // 확장자 가져오기
             const ext = path.extname(file.originalname);
             // 파일원본명 + 날짜(파일명 중복을 막기위해) + 확장자
-            cb(null,path.basename(file.originalname, ext) + new Date().valueOf() + ext);
+            cb(null,path.basename(file.originalname, ext) + Date.now() + ext);
         }
     }),
-    limit: {
+    limits: {
         // 5 메가 제한
-        filesize: 5 * 1024 * 1024
+        fileSize: 5 * 1024 * 1024
     } 
 });
 
@@ -38,7 +46,7 @@ router.post('/img', isLoggedIn, uploadImg.single('img'), (req, res) => {
 });
 
 const uploadPost = multer();
-router.post('/', isLoggedIn, uploadPost.none(), async (req, res,next) => {
+router.post('/', isLoggedIn, uploadPost.none(), async (req, res, next) => {
     // 게시글 업로드
     try {
         const post = await Post.create({
@@ -47,7 +55,7 @@ router.post('/', isLoggedIn, uploadPost.none(), async (req, res,next) => {
             userId: req.user.id,    // 일대다 관계에 따라 생긴 컬럼
         });
         // 정규표현식, #뒤를 배열로 가져옴
-        const hashtags = req.body.content.match(/#[^\s]*/g);
+        const hashtags = req.body.content.match(/#[^\s#]*/g);
         if (hashtags) {
             // 안녕하세요 #노드 #익스프레스 => hashtags = ['#노드', '#익스프레스']
             // promise.all 과 map을 써서 전부 넣음
@@ -67,7 +75,10 @@ router.post('/', isLoggedIn, uploadPost.none(), async (req, res,next) => {
 
 router.get('/hashtag', async (req, res, next) => {
 
-    const query = req.query.hashtags;
+    console.log("========== searching start ============");
+
+    const query = req.query.hashtag;
+    console.log(query);
     if(!query) {
         return res.redirect('/');
     }
@@ -79,12 +90,12 @@ router.get('/hashtag', async (req, res, next) => {
         const hashtag = await Hashtag.findOne({ where : {title: query}});
         let posts = [];
         if(hashtag) {
-            post = await hashtag.getPosts({include: [{model: User}]});
+            posts = await hashtag.getPosts({include: [{model: User}]});
         }
-        return res.render('main', {
+        return res.render('index.pug', {
             title: `${query} | NodeBird`,
             user: req.user,
-            twits: this.posts,
+            twits: posts,
         });
     } catch(err) {
         console.error(err);

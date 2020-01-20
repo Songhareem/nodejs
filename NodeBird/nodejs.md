@@ -44,6 +44,10 @@
 - sequelize, sequelize-cli를 통해 구현
 - sequelize db:create
 
+- 문제 해결
+    - error : user is associated to user multiple times. To identify the correct association, you must use the 'as' keyword to specify the alias of the association you want to include.
+        - 해결 : include 내에서 as를 확인(as의 이름이 index에서 선언시 있는지 등)
+
 
 # 이미지 업로드
 

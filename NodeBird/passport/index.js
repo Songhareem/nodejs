@@ -21,34 +21,37 @@ module.exports = (passport) => {
     // 모든 요청에 실행되므로 DB 조회를 캐싱해서 효율적이게 만들어야 함
     // 받은 id로 db조회하여 user 정보 복구
     passport.deserializeUser((id, done) => {
+        
+        console.log("============== deserializeUser ==============");
+            
         if(cashingSession[id]) {
             console.log(cashingSession[id]);
             done(null, cashingSession[id]);
         } else {
             User.findOne({
-                where: {id},
+                where: { id },
                 include: [{
-                    model: User,
-                    attributes:['id','nick'],
-                    as: 'Followers',  
-                },
-                {
-                    model: User,
-                    attributes:['id','nick'],
-                    as: 'Followings',
-                }]
-             })
-                .then( (user) => {
+                  model: User,
+                  attributes: ['id', 'nick'],
+                  as: 'Followers',
+                }, {
+                  model: User,
+                  attributes: ['id', 'nick'],
+                  as: 'Followings',
+                }],
+            })
+                .then( user => {
                     cashingSession[id] = user;
                     // done의 user = req.user, req.user 수정시 deserializeUser에서 해야함
                     done(null, user);   
                 })
-                .catch( (err) =>  {
-                    done(err)
+                .catch( err =>  {
+                    console.log('deserializeError');
+                    done(err);
                 });
         }
     })
 
     local(passport);
-    kakao(passport);
+    //kakao(passport);
 }

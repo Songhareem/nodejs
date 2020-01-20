@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 // app.use('/', express.static(path.join(__dirname, 'public'))); // 바로 아래와 같음
 app.use(express.static(path.join(__dirname, 'public')));
 // express.static으로 실주소: /upload 와 접근주소: /img 를 다르게 만듦
-app.use('/img', express.static(path.join(__dirname, 'upload'))); 
+app.use('/img', express.static(path.join(__dirname, 'uploads'))); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
