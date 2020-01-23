@@ -16,3 +16,11 @@
 
 - 단점
     - 너무 많이 api서버를 분리하면, log추적 힘듦 등의 불편함 발생
+
+# JWT 
+
+- ref : https://yonghyunlee.gitlab.io/node/jwt/
+
+# domain.js
+
+- 사용자에게 발급할 시크릿키와 도메인 주소를 저장할 모델
