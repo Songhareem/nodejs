@@ -6,11 +6,15 @@ const { User, Domain } = require('../models');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  User.find({
+  
+  console.log("========== index router =============");
+  console.log(req);
+  User.findOne({
     where: { id: req.user && req.user.id || null },
     include: { model: Domain },
   })
     .then((user) => {
+      console.log(user);
       res.render('login', {
         user,
         loginError: req.flash('loginError'),
@@ -22,7 +26,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-/*/
+//*/
 router.post('/domain', (req, res, next) => {
   Domain.create({
     userId: req.user.id,

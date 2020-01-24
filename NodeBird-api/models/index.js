@@ -14,6 +14,9 @@ db.Sequelize = Sequelize;
 db.User = require('./User')(sequelize, Sequelize);
 db.Post = require('./Post')(sequelize, Sequelize);
 db.Hashtag = require('./Hashtag')(sequelize, Sequelize);
+db.Domain = require('./Domain')(sequelize, Sequelize);
+
+//console.log(db);
 
 // 일대일 관계
 //db.User.hasOne(db.Post);  // 주가 되는것이 hasOne
@@ -42,5 +45,8 @@ db.User.belongsToMany(db.User, {
 // 좋아요 좋아요 취소
 db.User.belongsToMany(db.Post, {through : 'Like'});
 db.Post.belongsToMany(db.User, {through : 'Like'});
+
+db.User.hasMany(db.Domain);
+db.Domain.belongsTo(db.User);
 
 module.exports = db;

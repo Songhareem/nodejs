@@ -1,5 +1,5 @@
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => (
 
     sequelize.define('domain', {
         // api를 쓸 수 있는 도메인 (localhost:8000 등이 들어감)
@@ -31,6 +31,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
     })
-};
+);
 
 // Domain.create({ host: })
