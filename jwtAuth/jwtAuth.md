@@ -3,10 +3,6 @@
 
 - ref : https://tansfil.tistory.com/58?category=255594
 
-# jwt의 AccessToken과 같이 사용하는 RefreshToken 그리고 Sliding Sessions
-
-- ref : https://blog.ull.im/engineering/2019/02/07/jwt-strategy.html
-
 # passport jwt 를 이용한 인증 및 로그인아웃 구현
 
 - ref : https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
@@ -28,6 +24,10 @@
 
 - 서버는 유효한 RefreshToken으로 요청이 들어오면 새 AccessToken 발급, 만료된 RefreshToken으로 요청이 올 경우, 오류를 반환하고 재로그인 요구
 
+# jwt의 AccessToken과 같이 사용하는 RefreshToken 그리고 Sliding Sessions
+
+- ref : https://blog.ull.im/engineering/2019/02/07/jwt-strategy.html
+
 # OAuth, OAuth2란? 차이점?
 
 - ref : https://minwan1.github.io/2018/02/24/2018-02-24-OAuth/
@@ -35,3 +35,8 @@
 # 카카오 관련 엑세스 토큰/리프레시 토큰 발급에 대해
 
 - ref : https://devtalk.kakao.com/t/topic/23242/4
+
+# DB 보안 
+
+- uuid를 이용한 PK 값 보안
+    - ref : https://medium.com/aha-official/%EC%95%84%ED%95%98-rest-api-%EC%84%9C%EB%B2%84-%EA%B0%9C%EB%B0%9C-6-43568d94878a
