@@ -28,6 +28,10 @@
 
 - ref : https://blog.ull.im/engineering/2019/02/07/jwt-strategy.html
 
+# js에서의 jsonwebtoken 라이브러리 사용법
+
+- ref : https://hycszero.tistory.com/108
+
 # OAuth, OAuth2란? 차이점?
 
 - ref : https://minwan1.github.io/2018/02/24/2018-02-24-OAuth/
