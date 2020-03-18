@@ -1,0 +1,13 @@
+
+{
+    // 컴파일 방법
+    "compilerOptions": {
+        "module": "commonjs",   // module : import와 export에 대한 설정 (commonjs : import export 보편적으로 수행)
+        "target": "ES2015",     // target : 어떤 버전의 js버전으로 컴파일 할것인지
+        "sourceMap": true,      // sourceMap : sourcemap기능 (배포용으로 빌드한 파일과 원본 파일을 서로 연결시켜주는 기능) on/off
+        "outDir": "dist",       // outDir : 컴파일 후 js 파일이 생기는 폴더
+    },
+    // 컴파일에 포함되는 파일들
+    "include": ["src/**/*"],    // 컴파일을 할 파일 혹은 dir 경로
+    "exclude": ["node_modules"]
+}
