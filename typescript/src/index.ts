@@ -67,6 +67,11 @@ const isBlockVaild = (candidateBlock: Block, previousBlock: Block): boolean => {
         return true;
     }
 }
+const addBlock = (candidateBlock: Block): void => {
+    if(isBlockVaild(candidateBlock, getLastBlock())) {
+        blockChain.push(candidateBlock);
+    }
+}
 const createNewBlock = (data: string) : Block => {  
     const previousBlock: Block = getLastBlock();
     const newIndex: number = Block.getNextIndex();
@@ -75,12 +80,8 @@ const createNewBlock = (data: string) : Block => {
 
     const newBlock: Block = new Block(newIndex, newHash, previousBlock.hash, data, newTimestamp);
 
+    addBlock(newBlock);
     return newBlock;
-}
-const addBlock = (candidateBlock: Block): void => {
-    if(isBlockVaild(candidateBlock, getLastBlock())) {
-        blockChain.push(candidateBlock);
-    }
 }
 
 // 초기 Salt값
@@ -95,6 +96,4 @@ let blockChain: Block[] = [initBlock];
 // 배열 push기능 및 인스턴스 객체
 //blockChain.push(new Block(1, "hash$Sample$2","preHash$Sample$2", "sampleData$2", 1));
 
-addBlock(createNewBlock("hello"));
-addBlock(createNewBlock("world"));
 console.log(getBlockChain());
